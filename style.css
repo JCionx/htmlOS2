@@ -1,0 +1,67 @@
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    background: url(images/bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+  
+#window-titlebar {
+    position: relative;
+    z-index: 20;
+}
+
+.window {
+    position: absolute;
+    z-index: 9;
+}
+
+iframe {
+    margin: 0 6px 6px;
+    border: 1px solid rgba(0,0,0,.7);
+    width: calc(100% - 12px);
+    height: calc(100% - 35px);
+}
+  
+.window .resizers{
+    width: 100%;
+    height: 100%;
+    border: 3px solid #4286f4;
+    box-sizing: border-box;
+    opacity: 0;
+}
+  
+.window .resizers .resizer{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; /*magic to turn square into circle*/
+    background: white;
+    border: 3px solid #4286f4;
+    position: absolute;
+}
+  
+.window .resizers .resizer.top-left {
+    left: -5px;
+    top: -5px;
+    cursor: nwse-resize; /*resizer cursor*/
+}
+.window .resizers .resizer.top-right {
+    right: -5px;
+    top: -5px;
+    cursor: nesw-resize;
+}
+.window .resizers .resizer.bottom-left {
+    left: -5px;
+    bottom: -5px;
+    cursor: nesw-resize;
+}
+.window .resizers .resizer.bottom-right {
+    right: -5px;
+    bottom: -5px;
+    cursor: nwse-resize;
+}
