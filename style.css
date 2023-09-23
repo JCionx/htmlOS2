@@ -1,3 +1,7 @@
+html {
+    cursor: url(cursors/windows7_arrow.cur), auto;
+}
+
 body {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -14,6 +18,10 @@ body {
 #window-titlebar {
     position: relative;
     z-index: 20;
+}
+
+#window-titlebar * {
+    cursor: url(cursors/windows7_arrow.cur), auto;
 }
 
 .window {
@@ -48,20 +56,20 @@ iframe {
 .window .resizers .resizer.top-left {
     left: -5px;
     top: -5px;
-    cursor: nwse-resize; /*resizer cursor*/
+    cursor: url(cursors/windows7_nwse.cur), nwse-resize;
 }
 .window .resizers .resizer.top-right {
     right: -5px;
     top: -5px;
-    cursor: nesw-resize;
+    cursor: url(cursors/windows7_nesw.cur), nwse-resize;
 }
 .window .resizers .resizer.bottom-left {
     left: -5px;
     bottom: -5px;
-    cursor: nesw-resize;
+    cursor: url(cursors/windows7_nesw.cur), nwse-resize;
 }
 .window .resizers .resizer.bottom-right {
     right: -5px;
     bottom: -5px;
-    cursor: nwse-resize;
+    cursor: url(cursors/windows7_nwse.cur), nwse-resize;
 }
