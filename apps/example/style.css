@@ -2,6 +2,14 @@
     cursor: url(cursors/windows7_arrow.cur), auto;
 }
 
+input, textarea, select {
+    cursor: url(cursors/windows7_select.cur), auto;
+}
+
+a {
+    cursor: url(cursors/windows7_link.cur), auto;
+}
+
 body {
     -webkit-user-select: none;
     -moz-user-select: none;

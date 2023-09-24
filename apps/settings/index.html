@@ -9,48 +9,60 @@
 </head>
 <body class="has-scrollbar">
     <menu role="tablist">
-        <button role="tab" aria-controls="music" aria-selected="true">Music</button>
-        <button role="tab" aria-controls="dogs">Dogs</button>
-        <button role="tab" aria-controls="food">Food</button>
+        <button role="tab" aria-controls="system" aria-selected="true">System</button>
+        <button role="tab" aria-controls="customize">Customize</button>
+        <button role="tab" aria-controls="startup">Startup</button>
     </menu>
-    <article role="tabpanel" id="music">
-        <p>Set your listening preferences</p>
-        <fieldset>
-        <legend>Today's mood</legend>
-        <div class="field-row">
-            <input id="radio30" type="radio" name="fieldset-example2">
-            <label for="radio30">Nicki Minaj</label>
-        </div>
-        <div class="field-row">
-            <input id="radio31" type="radio" name="fieldset-example2">
-            <label for="radio31">Bell Towers</label>
-        </div>
-        <div class="field-row">
-            <input id="radio32" type="radio" name="fieldset-example2">
-            <label for="radio32">The Glamorous Monique</label>
-        </div>
-        <div class="field-row">
-            <input id="radio33" type="radio" name="fieldset-example2">
-            <label for="radio33">EN. V</label>
-        </div>
-        </fieldset>
-        <section class="field-row">
-            <button>Reset Alarm...</button>
-            <label>Try this to get some attention</label>
-        </section>
+    <article role="tabpanel" id="system">
+        <p>Install custom app</p>
+        <input type="text" placeholder="App name" name="app-name" id="app-install">
+        <br>
+        <br>
+        <input type="text" placeholder="App URL" name="app-url" id="app-install">
+        <br>
+        <br>
+        <input type="text" placeholder="App icon" name="app-icon" id="app-install">
+        <br>
+        <br>
+        <button class="default">Install</button>
+        <button>Copy code</button>
+        <br>
+        <br>
+        <p>Add custom app to the taskbar</p>
+        <input type="text" placeholder="App name" name="app-name" id="tb-app-name">
+        <br>
+        <br>
+        <input type="text" placeholder="App URL" name="app-url" id="tb-app-url">
+        <br>
+        <br>
+        <input type="text" placeholder="App icon" name="app-icon" id="tb-app-icon">
+        <br>
+        <br>
+        <button class="default" onclick="parent.addToTaskbar(document.getElementById('tb-app-name').value, document.getElementById('tb-app-url').value, document.getElementById('tb-app-icon').value)">Add</button>
+        <button onclick="navigator.clipboard.writeText('parent.addToTaskbar(\'' + document.getElementById('tb-app-name').value + '\', \'' + document.getElementById('tb-app-url').value + '\', \'' + document.getElementById('tb-app-icon').value + '\')')">Copy code</button>
+        <br>
+        <br>
+        <p>Open custom app</p>
+        <input type="text" placeholder="App name" name="app-name" id="open-app-name">
+        <br>
+        <br>
+        <input type="text" placeholder="App URL" name="app-url" id="open-app-url">
+        <br>
+        <br>
+        <input type="text" placeholder="App icon" name="app-icon" id="open-app-icon">
+        <br>
+        <br>
+        <button class="default" onclick="parent.openWindow(document.getElementById('open-app-name').value, document.getElementById('open-app-url').value, document.getElementById('open-app-icon').value)">Open</button>
+        <button onclick="navigator.clipboard.writeText('parent.openWindow(\'' + document.getElementById('open-app-name').value + '\', \'' + document.getElementById('open-app-url').value + '\', \'' + document.getElementById('open-app-icon').value + '\')')">Copy code</button>
     </article>
   
-    <article role="tabpanel" hidden id="dogs">
+    <article role="tabpanel" hidden id="customize">
         <p>A</p>
     </article>
   
-    <article role="tabpanel" hidden id="food">
+    <article role="tabpanel" hidden id="startup">
         <p>You create the content for each tab by using an <code>article</code> tag.</p>
     </article>
-    <section class="field-row" style="justify-content: flex-end">
-        <button class="default">OK</button>
-        <button>Cancel</button>
-    </section>
 
     <script>
         document.addEventListener('contextmenu', function(event) {
