@@ -15,17 +15,17 @@
     </menu>
     <article role="tabpanel" id="system">
         <p>Install custom app</p>
-        <input type="text" placeholder="App name" name="app-name" id="app-install">
+        <input type="text" placeholder="App name" name="app-name" id="sm-app-name">
         <br>
         <br>
-        <input type="text" placeholder="App URL" name="app-url" id="app-install">
+        <input type="text" placeholder="App URL" name="app-url" id="sm-app-url">
         <br>
         <br>
-        <input type="text" placeholder="App icon" name="app-icon" id="app-install">
+        <input type="text" placeholder="App icon" name="app-icon" id="sm-app-icon">
         <br>
         <br>
-        <button class="default">Install</button>
-        <button>Copy code</button>
+        <button class="default" onclick="parent.installApp(document.getElementById('sm-app-name').value, document.getElementById('sm-app-url').value, document.getElementById('sm-app-icon').value)">Install</button>
+        <button onclick="navigator.clipboard.writeText('parent.installApp(\'' + document.getElementById('sm-app-name').value + '\', \'' + document.getElementById('sm-app-url').value + '\', \'' + document.getElementById('sm-app-icon').value + '\')')">Copy code</button>
         <br>
         <br>
         <p>Add custom app to the taskbar</p>

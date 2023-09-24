@@ -156,6 +156,11 @@ function openWindow(title, url, icon) {
   // Add window to taskbar
   addOpenToTaskbar(title, url, icon, newWindow.id);
   closeStartMenu();
+  newWindow.classList.add("opening-window");
+  // Make a 0.8s delay before removing the window
+  setTimeout(function() {
+    newWindow.classList.remove("opening-window");
+  }, 190);
 }
 
 // Function to maximize a window
@@ -217,7 +222,13 @@ function closeWindow(id) {
 
 function minimizeWindow(id) {
   var window = document.getElementById(id);
-  window.style.display = "none";
+  // Add the "closing-window" class to the window
+  window.classList.add("minimizing-window");
+  // Make a 0.8s delay before removing the window
+  setTimeout(function() {
+    window.style.display = "none";
+    window.classList.remove("minimizing-window");
+  }, 390);
 }
 
 function addToTaskbar(title, url, icon) {
@@ -251,7 +262,13 @@ function addOpenToTaskbar(title, url, icon, id) {
   document.getElementById("taskbar").appendChild(newTaskbarItem);
   // Make the taskbar item open the window when clicked
   newTaskbarItem.onclick = function() {
-    document.getElementById(id).style.display = "block";
+    if (document.getElementById(id).style.display == "none") {
+      document.getElementById(id).style.display = "block";
+      document.getElementById(id).classList.add("unminimizing-window");
+      setTimeout(function() {
+        document.getElementById(id).classList.remove("unminimizing-window");
+      }, 390);
+    }
   };
 }
 
@@ -277,4 +294,17 @@ function toggleStartMenu() {
   } else {
     document.getElementById("startMenu").style.display = "flex";
   }
+}
+
+function installApp(title, url, icon) {
+  menu = document.getElementById("startMenuApps");
+  var newApp = document.getElementById("default-start-menu-app").cloneNode(true);
+  newApp.id = "startMenuApp" + windows.length;
+  newApp.getElementsByTagName("p")[0].innerHTML = title;
+  newApp.getElementsByTagName("img")[0].src = icon;
+  newApp.onclick = function() {
+    openWindow(title, url, icon);
+  };
+  windows.push(newApp);
+  menu.appendChild(newApp);
 }

@@ -15,6 +15,7 @@ body {
     background-size: cover;
 
     overflow: hidden;
+    margin: 0;
 }
   
 #window-titlebar {
@@ -36,6 +37,8 @@ body {
     height: 300px;
     min-width: 500px;
     min-height: 300px;
+    top: 10px;
+    left: 10px;
 }
 
 iframe {
@@ -121,6 +124,8 @@ iframe {
 
 .windows {
     perspective: 360px;
+    width: 100vw;
+    height: calc(100vh - 41px);
 }
 
 .closing-window {
@@ -130,6 +135,33 @@ iframe {
 @keyframes closeWindow {
     0% { transform: rotateX(0); transform-style: preserve-3d; }
     100% { transform: rotateX(3deg); transform-style: preserve-3d; opacity: 0; }
+}
+
+.minimizing-window {
+    animation: minimizeWindow 0.4s infinite;
+}
+
+@keyframes minimizeWindow {
+    0% { }
+    100% { top: 100%; transform: scale(0.4); opacity: 0; }
+}
+
+.unminimizing-window {
+    animation: unminimizeWindow 0.4s infinite;
+}
+
+@keyframes unminimizeWindow {
+    0% { top: 100%; transform: scale(0.4); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.opening-window {
+    animation: openWindow 0.2s infinite;
+}
+
+@keyframes openWindow {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 .start-menu {
