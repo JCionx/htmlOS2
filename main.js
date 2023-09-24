@@ -174,15 +174,21 @@ function maximizeWindow(id) {
     window.style.left = window.getAttribute("data-left");
     window.style.width = window.getAttribute("data-width");
     window.style.height = window.getAttribute("data-height");
-    // Make the window draggable
-    dragElement(window);
-    // Make the window resizable
-    var resizers = document.querySelectorAll("#" + id + " .resizer");
-    for (var i = 0; i < resizers.length; i++) {
-      resizers[i].style.display = "block";
-    }
-    // Make the control button that says "Restore" say "Maximize"
-    window.getElementsByClassName("mx-button")[0].setAttribute("aria-label", "Maximize");
+    window.classList.add("restoring-window");
+    setTimeout(function() {
+      window.classList.remove("restoring-window");
+      
+      // Make the window draggable
+      dragElement(window);
+      // Make the window resizable
+      var resizers = document.querySelectorAll("#" + id + " .resizer");
+      for (var i = 0; i < resizers.length; i++) {
+        resizers[i].style.display = "block";
+      }
+      // Make the control button that says "Restore" say "Maximize"
+      window.getElementsByClassName("mx-button")[0].setAttribute("aria-label", "Maximize");
+    }, 390);
+    
   // If the window is not maximized, maximize it
   } else {
     window.classList.add("maximized");
@@ -190,19 +196,26 @@ function maximizeWindow(id) {
     window.setAttribute("data-left", window.style.left);
     window.setAttribute("data-width", window.style.width);
     window.setAttribute("data-height", window.style.height);
-    window.style.top = "0";
-    window.style.left = "0";
-    window.style.width = "100%";
-    window.style.height = "100%";
-    // Make the window unable to be dragged
-    document.getElementById(id + "-titlebar").onmousedown = null;
-    // Make the window unable to be resized
-    var resizers = document.querySelectorAll("#" + id + " .resizer");
-    for (var i = 0; i < resizers.length; i++) {
-      resizers[i].style.display = "none";
-    }
-    // Make the control button that says "Maximize" say "Restore"
-    window.getElementsByClassName("mx-button")[0].setAttribute("aria-label", "Restore");
+
+    window.classList.add("maximizing-window");
+    setTimeout(function() {
+      window.classList.remove("maximizing-window");
+      window.style.top = "0";
+      window.style.left = "0";
+      window.style.width = "100%";
+      window.style.height = "100%";
+      // Make the window unable to be dragged
+      document.getElementById(id + "-titlebar").onmousedown = null;
+      // Make the window unable to be resized
+      var resizers = document.querySelectorAll("#" + id + " .resizer");
+      for (var i = 0; i < resizers.length; i++) {
+        resizers[i].style.display = "none";
+      }
+      // Make the control button that says "Maximize" say "Restore"
+      window.getElementsByClassName("mx-button")[0].setAttribute("aria-label", "Restore");
+    }, 390);
+
+    
   }
 }
 
