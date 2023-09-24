@@ -1,6 +1,8 @@
 // Make the window draggable
 dragElement(document.getElementById("window"));
 
+var openWindows = 0;
+
 // Make an element draggable
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -156,6 +158,7 @@ function openWindow(title, url, icon) {
   // Add window to taskbar
   addOpenToTaskbar(title, url, icon, newWindow.id);
   closeStartMenu();
+  openWindows++;
   newWindow.classList.add("opening-window");
   // Make a 0.8s delay before removing the window
   setTimeout(function() {
@@ -231,6 +234,7 @@ function closeWindow(id) {
   }, 390);
 
   tbIcon.remove();
+  openWindows--;
 }
 
 function minimizeWindow(id) {
