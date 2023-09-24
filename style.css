@@ -118,3 +118,16 @@ iframe {
 .default-window {
     display: none;
 }
+
+.windows {
+    perspective: 360px;
+}
+
+.closing-window {
+    animation: closeWindow 0.4s infinite;
+}
+
+@keyframes closeWindow {
+    0% { transform: rotateX(0); transform-style: preserve-3d; }
+    100% { transform: rotateX(3deg); transform-style: preserve-3d; opacity: 0; }
+}

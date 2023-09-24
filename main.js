@@ -205,7 +205,13 @@ function closeWindow(id) {
   var window = document.getElementById(id);
   var tbIcon = document.getElementById("taskbar-item" + (parseInt(id.split("window")[1]) + 1))
   
-  window.remove();
+  // Add the "closing-window" class to the window
+  window.classList.add("closing-window");
+  // Make a 0.8s delay before removing the window
+  setTimeout(function() {
+    window.remove();
+  }, 400);
+
   tbIcon.remove();
 }
 
