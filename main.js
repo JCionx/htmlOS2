@@ -277,22 +277,30 @@ document.addEventListener('contextmenu', function(event) {
 });
 
 function openStartMenu() {
-  if (document.getElementById("startMenu").style.display == "none") {
+  if (document.getElementById("startMenu").style.display !== "flex") {
     document.getElementById("startMenu").style.display = "flex";
+    document.getElementById("startMenu").classList.add("opening-menu");
+    setTimeout(function() {
+      document.getElementById("startMenu").classList.remove("opening-menu");
+    }, 390);
   }
 }
 
 function closeStartMenu() {
-  if (document.getElementById("startMenu").style.display == "flex") {
-    document.getElementById("startMenu").style.display = "none";
+  if (document.getElementById("startMenu").style.display == "flex") { 
+    document.getElementById("startMenu").classList.add("closing-menu");
+    setTimeout(function() {
+      document.getElementById("startMenu").style.display = "none";
+      document.getElementById("startMenu").classList.remove("closing-menu");
+    }, 390);
   }
 }
 
 function toggleStartMenu() {
   if (document.getElementById("startMenu").style.display == "flex") {
-    document.getElementById("startMenu").style.display = "none";
+    closeStartMenu();
   } else {
-    document.getElementById("startMenu").style.display = "flex";
+    openStartMenu();
   }
 }
 

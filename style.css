@@ -164,6 +164,24 @@ iframe {
     100% { transform: scale(1); opacity: 1; }
 }
 
+.opening-menu {
+    animation: openMenu 0.4s infinite;
+}
+
+@keyframes openMenu {
+    0% { bottom: -100%; }
+    100% { }
+}
+
+.closing-menu {
+    animation: closeMenu 0.4s infinite;
+}
+
+@keyframes closeMenu {
+    0% { }
+    100% { bottom: -100%; }
+}
+
 .start-menu {
     position: absolute;
     bottom: 40px;
