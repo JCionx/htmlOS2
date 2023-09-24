@@ -139,12 +139,6 @@ function openWindow(title, url, icon) {
   newWindow.getElementsByClassName("title-bar-text")[0].innerHTML = title;
   // Change the id of the div with the id "window-titlebar" to the id of the window + "-titlebar"
   newWindow.getElementsByTagName("div")[0].id = newWindow.id + "-titlebar";
-  // Set the window's image with id "window-icon" to the icon, but if there's no icon, set it to hide the image
-  if (icon != "") {
-    newWindow.getElementsByTagName("img")[0].src = icon;
-  } else {
-    newWindow.getElementsByTagName("img")[0].style.display = "none";
-  }
   // Add the window to the list of windows
   windows.push(newWindow);
   // Append the window to the div "windows".
@@ -152,6 +146,9 @@ function openWindow(title, url, icon) {
   // Make the window draggable and resizable
   dragElement(newWindow);
   makeResizableDiv("#" + newWindow.id);
+  // Add window to taskbar
+  addOpenToTaskbar(title, url, icon, newWindow.id);
+  
 }
 
 // Function to maximize a window
@@ -195,4 +192,52 @@ function maximizeWindow(id) {
     // Make the control button that says "Maximize" say "Restore"
     window.getElementsByClassName("mx-button")[0].setAttribute("aria-label", "Restore");
   }
+}
+
+function closeWindow(id) {
+  var window = document.getElementById(id);
+  var tbIcon = document.getElementById("taskbar-item" + (parseInt(id.split("window")[1]) + 1))
+  
+  window.remove();
+  tbIcon.remove();
+}
+
+function minimizeWindow(id) {
+  var window = document.getElementById(id);
+  window.style.display = "none";
+}
+
+function addToTaskbar(title, url, icon) {
+  // Clone the default taskbar item with id "taskbar-item" to the list of taskbar items and append it to the div "taskbar-items"
+  var newTaskbarItem = document.getElementById("taskbar-item").cloneNode(true);
+  newTaskbarItem.id = "taskbar-item" + windows.length;
+  
+  // Set the taskbar item's image to the icon, but if there's no icon, set it to hide the image
+  newTaskbarItem.src = icon;
+  // Add the taskbar item to the list of taskbar items
+  windows.push(newTaskbarItem);
+  // Append the taskbar item to the div "taskbar-items".
+  document.getElementById("taskbar").appendChild(newTaskbarItem);
+  // Make the taskbar item open the window when clicked
+  newTaskbarItem.onclick = function() {
+    openWindow(title, url, icon);
+  };
+}
+
+function addOpenToTaskbar(title, url, icon, id) {
+  // Clone the default taskbar item with id "taskbar-item" to the list of taskbar items and append it to the div "taskbar-items"
+  var newTaskbarItem = document.getElementById("taskbar-item").cloneNode(true);
+  newTaskbarItem.id = "taskbar-item" + windows.length;
+  // Set the taskbar item's image to the icon, but if there's no icon, set it to hide the image
+  newTaskbarItem.src = icon;
+  // add a new class to the taskbar item
+  newTaskbarItem.classList.add("tb-icon-open");
+  // Add the taskbar item to the list of taskbar items
+  windows.push(newTaskbarItem);
+  // Append the taskbar item to the div "taskbar-items".
+  document.getElementById("taskbar").appendChild(newTaskbarItem);
+  // Make the taskbar item open the window when clicked
+  newTaskbarItem.onclick = function() {
+    document.getElementById(id).style.display = "block";
+  };
 }

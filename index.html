@@ -12,13 +12,13 @@
 
 <body>
     <div id="windows">
-        <div class="window glass active" id="window" class="window">
+        <div class="window glass active default-window" id="window" class="window">
             <div class="title-bar" id="window-titlebar">
                 <div class="title-bar-text">window</div>
                 <div class="title-bar-controls">
-                    <button aria-label="Minimize"></button>
+                    <button aria-label="Minimize" onclick="minimizeWindow(parentElement.parentElement.parentElement.id)"></button>
                     <button aria-label="Maximize" onclick="maximizeWindow(parentElement.parentElement.parentElement.id)" class="mx-button"></button>
-                    <button aria-label="Close" onclick="parentElement.parentElement.parentElement.remove()"></button>
+                    <button aria-label="Close" onclick="closeWindow(parentElement.parentElement.parentElement.id)"></button>
                 </div>
             </div>
             <iframe src="" frameborder="0"></iframe>
@@ -30,10 +30,9 @@
             </div>
         </div>
     </div>
-    <div class="taskbar">
-        <img src="images/logo.png">
+    <div class="taskbar" id="taskbar">
+        <img src="images/logo.png" id="taskbar-item">
     </div>
     <script src="main.js"></script>
 </body>
-
 </html>

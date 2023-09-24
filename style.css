@@ -25,7 +25,7 @@ body {
     z-index: 20;
 }
 
-#window-titlebar * {
+.title-bar-controls * {
     cursor: url(cursors/windows7_arrow.cur), auto;
 }
 
@@ -102,5 +102,13 @@ iframe {
 
 .taskbar img:hover {
     background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(57, 169, 255, 0.622) 10%, rgba(57, 169, 255, 0.622) 90%, rgba(2,0,36,0) 100%);   
+    background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(80, 80, 80, 0.622) 10%, rgba(80, 80, 80, 0.622) 90%, rgba(2,0,36,0) 100%);   
+}
+
+.tb-icon-open {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(80, 80, 80, 0.322) 10%, rgba(80, 80, 80, 0.322) 90%, rgba(2,0,36,0) 100%);   
+}
+
+.default-window {
+    display: none;
 }
