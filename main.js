@@ -155,7 +155,7 @@ function openWindow(title, url, icon) {
   makeResizableDiv("#" + newWindow.id);
   // Add window to taskbar
   addOpenToTaskbar(title, url, icon, newWindow.id);
-  
+  closeStartMenu();
 }
 
 // Function to maximize a window
@@ -210,7 +210,7 @@ function closeWindow(id) {
   // Make a 0.8s delay before removing the window
   setTimeout(function() {
     window.remove();
-  }, 400);
+  }, 390);
 
   tbIcon.remove();
 }
@@ -258,3 +258,23 @@ function addOpenToTaskbar(title, url, icon, id) {
 document.addEventListener('contextmenu', function(event) {
   event.preventDefault();
 });
+
+function openStartMenu() {
+  if (document.getElementById("startMenu").style.display == "none") {
+    document.getElementById("startMenu").style.display = "flex";
+  }
+}
+
+function closeStartMenu() {
+  if (document.getElementById("startMenu").style.display == "flex") {
+    document.getElementById("startMenu").style.display = "none";
+  }
+}
+
+function toggleStartMenu() {
+  if (document.getElementById("startMenu").style.display == "flex") {
+    document.getElementById("startMenu").style.display = "none";
+  } else {
+    document.getElementById("startMenu").style.display = "flex";
+  }
+}

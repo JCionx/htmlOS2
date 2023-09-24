@@ -31,8 +31,20 @@
         </div>
     </div>
     <div class="taskbar has-scrollbar" id="taskbar">
-        <img src="images/logo.png" id="taskbar-item">
+        <img src="images/logo.png" id="taskbar-item" onclick="toggleStartMenu()">
         <img src="apps/settings/icon.png" onclick="openWindow('Settings', 'apps/settings/index.html', 'apps/settings/icon.png')">
+    </div>
+    <div class="start-menu" id="startMenu">
+        <div class="start-menu-apps has-scrollbar">
+            <div onclick="openWindow('Settings', 'apps/settings/index.html', 'apps/settings/icon.png')">
+                <img src="apps/settings/icon.png">
+                <p>Settings</p>
+            </div>
+        </div>
+        <div class="start-menu-sd">
+            <img src="images/user.png">
+            <button onclick="location.reload()">Restart</button>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
