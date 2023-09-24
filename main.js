@@ -127,6 +127,8 @@ makeResizableDiv('#window')
 // List of windows
 var windows = [];
 
+var currentZindex = 20;
+
 // Function to open a window
 function openWindow(title, url, icon) {
   // Clone the default window with id "window" to the list of windows and append it to the div "windows"
@@ -139,6 +141,11 @@ function openWindow(title, url, icon) {
   newWindow.getElementsByClassName("title-bar-text")[0].innerHTML = title;
   // Change the id of the div with the id "window-titlebar" to the id of the window + "-titlebar"
   newWindow.getElementsByTagName("div")[0].id = newWindow.id + "-titlebar";
+  // Make the selected window stay on top
+  newWindow.onmousedown = function() {
+    newWindow.style.zIndex = currentZindex;
+    currentZindex++;
+  };
   // Add the window to the list of windows
   windows.push(newWindow);
   // Append the window to the div "windows".
@@ -241,3 +248,7 @@ function addOpenToTaskbar(title, url, icon, id) {
     document.getElementById(id).style.display = "block";
   };
 }
+
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});

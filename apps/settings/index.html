@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="7.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Settings</title>
+</head>
+<body class="has-scrollbar">
+    <menu role="tablist">
+        <button role="tab" aria-controls="music" aria-selected="true">Music</button>
+        <button role="tab" aria-controls="dogs">Dogs</button>
+        <button role="tab" aria-controls="food">Food</button>
+    </menu>
+    <article role="tabpanel" id="music">
+        <p>Set your listening preferences</p>
+        <fieldset>
+        <legend>Today's mood</legend>
+        <div class="field-row">
+            <input id="radio30" type="radio" name="fieldset-example2">
+            <label for="radio30">Nicki Minaj</label>
+        </div>
+        <div class="field-row">
+            <input id="radio31" type="radio" name="fieldset-example2">
+            <label for="radio31">Bell Towers</label>
+        </div>
+        <div class="field-row">
+            <input id="radio32" type="radio" name="fieldset-example2">
+            <label for="radio32">The Glamorous Monique</label>
+        </div>
+        <div class="field-row">
+            <input id="radio33" type="radio" name="fieldset-example2">
+            <label for="radio33">EN. V</label>
+        </div>
+        </fieldset>
+        <section class="field-row">
+            <button>Reset Alarm...</button>
+            <label>Try this to get some attention</label>
+        </section>
+    </article>
+  
+    <article role="tabpanel" hidden id="dogs">
+        <p>A</p>
+    </article>
+  
+    <article role="tabpanel" hidden id="food">
+        <p>You create the content for each tab by using an <code>article</code> tag.</p>
+    </article>
+    <section class="field-row" style="justify-content: flex-end">
+        <button class="default">OK</button>
+        <button>Cancel</button>
+    </section>
+
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+        const tabButtons = document.querySelectorAll("[role=tab]");
+        tabButtons.forEach((tabButton) => {
+          tabButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const tabContainer = e.target.parentElement.parentElement;
+            const targetId = e.target.getAttribute("aria-controls");
+            tabButtons.forEach((_tabButton) =>
+              _tabButton.setAttribute("aria-selected", false)
+            );
+            tabButton.setAttribute("aria-selected", true);
+            tabContainer
+              .querySelectorAll("[role=tabpanel]")
+              .forEach((tabPanel) => tabPanel.setAttribute("hidden", true));
+            tabContainer
+              .querySelector(`[role=tabpanel]#${targetId}`)
+              .removeAttribute("hidden");
+          });
+        });
+    </script>
+</body>
+</html>

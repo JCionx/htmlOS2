@@ -1,0 +1,11 @@
+* {
+    cursor: url(cursors/windows7_arrow.cur), auto;
+}
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #f0f0f0;
+}
