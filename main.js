@@ -123,3 +123,33 @@ function makeResizableDiv(div) {
 
 // Make a window resizable
 makeResizableDiv('.window')
+
+// List of windows
+var windows = [];
+
+// Function to open a window
+function openWindow(title, url, icon) {
+  // Clone the default window with id "window" to the list of windows and append it to the div "windows"
+  var newWindow = document.getElementById("window").cloneNode(true);
+  newWindow.id = "window" + windows.length;
+  newWindow.style.display = "block";
+  // Set the window's iframe to the url
+  newWindow.getElementsByTagName("iframe")[0].src = url;
+  // Set the window's title to the title
+  newWindow.getElementsByClassName("title-bar-text")[0].innerHTML = title;
+  // Change the id of the div with the id "window-titlebar" to the id of the window + "-titlebar"
+  newWindow.getElementsByTagName("div")[0].id = newWindow.id + "-titlebar";
+  // Set the window's image with id "window-icon" to the icon, but if there's no icon, set it to hide the image
+  if (icon != "") {
+    newWindow.getElementsByTagName("img")[0].src = icon;
+  } else {
+    newWindow.getElementsByTagName("img")[0].style.display = "none";
+  }
+  // Add the window to the list of windows
+  windows.push(newWindow);
+  // Append the window to the div "windows".
+  document.getElementById("windows").appendChild(newWindow);
+  // Make the window draggable and resizable
+  dragElement(newWindow);
+  makeResizableDiv("#" + newWindow.id);
+}

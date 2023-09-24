@@ -13,6 +13,8 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+
+    overflow: hidden;
 }
   
 #window-titlebar {
@@ -27,6 +29,10 @@ body {
 .window {
     position: absolute;
     z-index: 9;
+    width: 500px;
+    height: 300px;
+    min-width: 500px;
+    min-height: 300px;
 }
 
 iframe {
@@ -41,7 +47,7 @@ iframe {
     height: 100%;
     border: 3px solid #4286f4;
     box-sizing: border-box;
-    opacity: 0;
+    opacity: 0;   
 }
   
 .window .resizers .resizer{
@@ -72,4 +78,17 @@ iframe {
     right: -5px;
     bottom: -5px;
     cursor: url(cursors/windows7_nwse.cur), nwse-resize;
+}
+
+.taskbar {
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    background: rgba(255,255,255,.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(0,0,0,.2);
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
 }
