@@ -14,7 +14,7 @@
         <button role="tab" aria-controls="startup">Startup</button>
     </menu>
     <article role="tabpanel" id="system">
-        <p>Install custom app</p>
+        <h4>Install custom app</h4>
         <input type="text" placeholder="App name" name="app-name" id="sm-app-name">
         <br>
         <br>
@@ -25,10 +25,10 @@
         <br>
         <br>
         <button class="default" onclick="parent.installApp(document.getElementById('sm-app-name').value, document.getElementById('sm-app-url').value, document.getElementById('sm-app-icon').value)">Install</button>
-        <button onclick="navigator.clipboard.writeText('parent.installApp(\'' + document.getElementById('sm-app-name').value + '\', \'' + document.getElementById('sm-app-url').value + '\', \'' + document.getElementById('sm-app-icon').value + '\')')">Copy code</button>
+        <button onclick="navigator.clipboard.writeText('installApp(\'' + document.getElementById('sm-app-name').value + '\', \'' + document.getElementById('sm-app-url').value + '\', \'' + document.getElementById('sm-app-icon').value + '\')')">Copy code</button>
         <br>
         <br>
-        <p>Add custom app to the taskbar</p>
+        <h4>Add custom app to the taskbar</h4>
         <input type="text" placeholder="App name" name="app-name" id="tb-app-name">
         <br>
         <br>
@@ -39,10 +39,10 @@
         <br>
         <br>
         <button class="default" onclick="parent.addToTaskbar(document.getElementById('tb-app-name').value, document.getElementById('tb-app-url').value, document.getElementById('tb-app-icon').value)">Add</button>
-        <button onclick="navigator.clipboard.writeText('parent.addToTaskbar(\'' + document.getElementById('tb-app-name').value + '\', \'' + document.getElementById('tb-app-url').value + '\', \'' + document.getElementById('tb-app-icon').value + '\')')">Copy code</button>
+        <button onclick="navigator.clipboard.writeText('addToTaskbar(\'' + document.getElementById('tb-app-name').value + '\', \'' + document.getElementById('tb-app-url').value + '\', \'' + document.getElementById('tb-app-icon').value + '\')')">Copy code</button>
         <br>
         <br>
-        <p>Open custom app</p>
+        <h4>Open custom app</h4>
         <input type="text" placeholder="App name" name="app-name" id="open-app-name">
         <br>
         <br>
@@ -53,15 +53,47 @@
         <br>
         <br>
         <button class="default" onclick="parent.openWindow(document.getElementById('open-app-name').value, document.getElementById('open-app-url').value, document.getElementById('open-app-icon').value)">Open</button>
-        <button onclick="navigator.clipboard.writeText('parent.openWindow(\'' + document.getElementById('open-app-name').value + '\', \'' + document.getElementById('open-app-url').value + '\', \'' + document.getElementById('open-app-icon').value + '\')')">Copy code</button>
+        <button onclick="navigator.clipboard.writeText('openWindow(\'' + document.getElementById('open-app-name').value + '\', \'' + document.getElementById('open-app-url').value + '\', \'' + document.getElementById('open-app-icon').value + '\')')">Copy code</button>
     </article>
   
     <article role="tabpanel" hidden id="customize">
-        <p>A</p>
+        <h4>Change theme color</h4>
+        <div class="field-row">
+            <input id="transparent-window-color" type="radio" name="win-c">
+            <label for="transparent-window-color">Transparent</label>
+        </div>
+        <div class="field-row">
+            <input id="blue-window-color" type="radio" name="win-c">
+            <label for="blue-window-color">Blue</label>
+        </div>
+        <div class="field-row">
+            <input id="red-window-color" type="radio" name="win-c">
+            <label for="red-window-color">Red</label>
+        </div>
+        <div class="field-row">
+            <input id="green-window-color" type="radio" name="win-c">
+            <label for="green-window-color">Green</label>
+        </div>
+        <div class="field-row">
+            <input id="yellow-window-color" type="radio" name="win-c">
+            <label for="yellow-window-color">Yellow</label>
+        </div>
+        <div class="field-row">
+            <input id="purple-window-color" type="radio" name="win-c">
+            <label for="purple-window-color">Purple</label>
+        </div>
+        <br>
+        <button class="default" onclick="parent.setTheme(document.querySelector('input[name=\'win-c\']:checked').id)">Change</button>
+        <button onclick="copyTheme()">Copy</button>
     </article>
   
     <article role="tabpanel" hidden id="startup">
-        <p>You create the content for each tab by using an <code>article</code> tag.</p>
+        <h4>Startup code</h4>
+        <p>Add all the settings that you want to preserve between restarts here. Use the copy button on the desired settings and paste it here. To add multiple settings, add a return between settings.</p>
+        <textarea name="startup-code" id="startupCode" cols="30" rows="10"></textarea>
+        <br>
+        <button class="default" onclick="setStartup()">Set</button>
+        <button onclick="loadStartup()">Load</button>
     </article>
 
     <script>
@@ -86,6 +118,18 @@
               .removeAttribute("hidden");
           });
         });
+
+        function copyTheme() {
+            navigator.clipboard.writeText('setTheme(\'' + document.querySelector('input[name=\'win-c\']:checked').id + '\')');
+        }
+
+        function setStartup() {
+            parent.setStartup(document.getElementById('startupCode').value);
+        }
+
+        function loadStartup() {
+            document.getElementById('startupCode').value = parent.startupCode;
+        }
     </script>
 </body>
 </html>

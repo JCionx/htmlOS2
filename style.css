@@ -265,3 +265,23 @@ iframe {
     border: solid rgba(0,0,0,.2) 2px;
     border-radius: 5px;
 }
+
+.blue-window-color::before, .blue-window-color > .title-bar {
+    background-color: #300caf;
+}
+
+.red-window-color::before, .red-window-color > .title-bar {
+    background-color: #db1b1b;
+}
+
+.green-window-color::before, .green-window-color > .title-bar {
+    background-color: #0caf1a;
+}
+
+.yellow-window-color::before, .yellow-window-color > .title-bar {
+    background-color: #f1d42b;
+}
+
+.purple-window-color::before, .purple-window-color > .title-bar {
+    background-color: #8622b4;
+}

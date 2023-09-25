@@ -2,6 +2,7 @@
 dragElement(document.getElementById("window"));
 
 var openWindows = 0;
+var startupCode = ";"
 
 // Make an element draggable
 function dragElement(elmnt) {
@@ -333,3 +334,27 @@ function installApp(title, url, icon) {
   windows.push(newApp);
   menu.appendChild(newApp);
 }
+
+function setTheme(theme) {
+  // remove all the classes that end with -window-color
+  var windows = document.getElementsByClassName("window");
+  for (var i = 0; i < windows.length; i++) {
+      windows[i].classList.remove("blue-window-color");
+      windows[i].classList.remove("red-window-color");
+      windows[i].classList.remove("green-window-color");
+      windows[i].classList.remove("yellow-window-color");
+      windows[i].classList.remove("purple-window-color");
+      if (theme !== "transparent-window-color") {
+          windows[i].classList.add(theme);
+      }
+  }
+}
+
+function setStartup(code) {
+  localStorage.setItem("startupCode", code);
+}
+
+startupCode = localStorage.getItem("startupCode");
+
+// Run startup code
+eval(startupCode);
