@@ -1,0 +1,64 @@
+* {
+    cursor: url(cursors/windows7_arrow.cur), auto;
+}
+
+html, body {
+    height: calc(100% - 16px);
+}
+
+input, textarea, select {
+    cursor: url(cursors/windows7_select.cur), auto;
+}
+
+a {
+    cursor: url(cursors/windows7_link.cur), auto;
+}
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #f0f0f0;
+}
+
+article {
+    height: calc(100% - 43px);
+    padding: 0 !important;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.toolbar {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.searchbar {
+    margin: 0;
+}
+
+@media only screen and (max-width: 530px) {
+    .searchbox{
+      display: none;
+    }
+}
+
+.toolbar img {
+    width: 23px;
+    height: 23px;
+    margin: 0 5px;
+}
+
+.tb1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}

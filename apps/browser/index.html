@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="7.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Browser</title>
+</head>
+<body class="has-scrollbar">
+    <div class="toolbar">
+        <div class="tb1">
+            <img src="left.png" onclick="previous()">
+            <input type="text" name="url" id="urlInput" placeholder="Insert URL">
+            <img src="go.png" onclick="go()">
+            <img src="refresh.png" onclick="refresh()">
+        </div>
+        <div class="searchbox">
+            <input type="search" placeholder="Search Google" id="search"/>
+            <button aria-label="search" onclick="search()"></button>
+        </div>
+    </div>
+    <menu role="tablist">
+        <button role="tab" aria-controls="tab1" aria-selected="true">Tab 1</button>
+        <button role="tab" aria-controls="tab2">Tab 2</button>
+        <button role="tab" aria-controls="tab3">Tab 3</button>
+    </menu>
+    <article role="tabpanel" id="tab1">
+        <iframe src="https://google.com/" frameborder="0"></iframe>
+    </article>
+  
+    <article role="tabpanel" hidden id="tab2">
+        <iframe src="https://google.com/" frameborder="0"></iframe>
+    </article>
+  
+    <article role="tabpanel" hidden id="tab3">
+        <iframe src="https://google.com/" frameborder="0"></iframe>
+    </article>
+
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+        const tabButtons = document.querySelectorAll("[role=tab]");
+        tabButtons.forEach((tabButton) => {
+          tabButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const tabContainer = e.target.parentElement.parentElement;
+            const targetId = e.target.getAttribute("aria-controls");
+            tabButtons.forEach((_tabButton) =>
+              _tabButton.setAttribute("aria-selected", false)
+            );
+            tabButton.setAttribute("aria-selected", true);
+            tabContainer
+              .querySelectorAll("[role=tabpanel]")
+              .forEach((tabPanel) => tabPanel.setAttribute("hidden", true));
+            tabContainer
+              .querySelector(`[role=tabpanel]#${targetId}`)
+              .removeAttribute("hidden");
+          });
+        });
+
+        // function go. when user executes it, the input "url" will be set to the current tab's iframe url
+        function go() {
+            document.querySelector("[role=tab][aria-selected=true]").parentElement.parentElement.querySelector("[role=tabpanel]:not([hidden])").getElementsByTagName("iframe")[0].src = document.getElementById("urlInput").value
+        }
+
+        function refresh() {
+            document.querySelector("[role=tab][aria-selected=true]").parentElement.parentElement.querySelector("[role=tabpanel]:not([hidden])").getElementsByTagName("iframe")[0].src = document.querySelector("[role=tab][aria-selected=true]").parentElement.parentElement.querySelector("[role=tabpanel]:not([hidden])").getElementsByTagName("iframe")[0].src
+        }
+
+        function previous() {
+            document.querySelector("[role=tab][aria-selected=true]").parentElement.parentElement.querySelector("[role=tabpanel]:not([hidden])").getElementsByTagName("iframe")[0].contentWindow.history.back()
+        }
+
+        function search() {
+            document.querySelector("[role=tab][aria-selected=true]").parentElement.parentElement.querySelector("[role=tabpanel]:not([hidden])").getElementsByTagName("iframe")[0].src = "https://google.com/search?q=" + document.getElementById("search").value
+        }
+    </script>
+</body>
+</html>

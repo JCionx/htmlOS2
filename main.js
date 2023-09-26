@@ -153,6 +153,7 @@ function openWindow(title, url, icon) {
   windows.push(newWindow);
   // Append the window to the div "windows".
   document.getElementById("windows").appendChild(newWindow);
+  newWindow.style.zIndex = currentZindex;
   // Make the window draggable and resizable
   dragElement(newWindow);
   makeResizableDiv("#" + newWindow.id);

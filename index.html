@@ -32,10 +32,15 @@
     </div>
     <div class="taskbar has-scrollbar" id="taskbar">
         <img src="images/logo.png" id="taskbar-item" onclick="toggleStartMenu()">
+        <img src="apps/browser/icon.png" onclick="openWindow('Browser', 'apps/browser/index.html', 'apps/browser/icon.png')">
         <img src="apps/settings/icon.png" onclick="openWindow('Settings', 'apps/settings/index.html', 'apps/settings/icon.png')">
     </div>
     <div class="start-menu" id="startMenu">
         <div class="start-menu-apps has-scrollbar" id="startMenuApps">
+            <div onclick="openWindow('Browser', 'apps/browser/index.html', 'apps/browser/icon.png')" id="default-start-menu-app">
+                <img src="apps/browser/icon.png">
+                <p>Browser</p>
+            </div>
             <div onclick="openWindow('Settings', 'apps/settings/index.html', 'apps/settings/icon.png')" id="default-start-menu-app">
                 <img src="apps/settings/icon.png">
                 <p>Settings</p>
